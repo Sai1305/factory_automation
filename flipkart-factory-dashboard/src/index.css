@@ -1,0 +1,167 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* --- DARK THEME PALETTE --- */
+  --bg-dark: #0f172a;       /* Deep Blue Background */
+  --sidebar-dark: #1e293b;  /* Sidebar/Card Background */
+  --text-primary: #f8fafc;  /* White Text */
+  --text-secondary: #94a3b8;/* Grey Text */
+  --border: #334155;        /* Borders */
+
+  /* --- ACTIONS --- */
+  --accent: #3b82f6;        /* Blue (Primary) */
+  --accent-hover: #2563eb;
+  --success: #10b981;       /* Green */
+  --warning: #f59e0b;       /* Orange/Yellow */
+  --danger: #ef4444;        /* Red */
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- LAYOUT --- */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background-color: var(--bg-dark);
+}
+
+/* --- TYPOGRAPHY --- */
+h1 { font-size: 1.8rem; font-weight: 700; margin: 0 0 5px 0; }
+h2 { font-size: 1.5rem; color: var(--text-primary); }
+h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+p { color: var(--text-secondary); margin: 0; }
+
+/* --- CARDS --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.machine-card {
+  background-color: var(--sidebar-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.machine-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+/* --- METRICS --- */
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.metric-value {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+/* --- BADGES --- */
+.badge {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-active { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
+.badge-error { background: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+.badge-idle { background: rgba(148, 163, 184, 0.2); color: var(--text-secondary); border: 1px solid var(--text-secondary); }
+
+/* --- BUTTONS --- */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: var(--accent-hover); }
+
+.btn-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+.btn-danger:hover { background: var(--danger); color: white; }
+
+.btn-success { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
+.btn-success:hover { background: var(--success); color: white; }
+
+/* --- TABLES --- */
+.table-container {
+  background-color: var(--sidebar-dark);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden; /* Rounds corners */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-primary);
+}
+
+thead { background-color: rgba(255, 255, 255, 0.03); }
+
+th {
+  text-align: left;
+  padding: 16px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover { background-color: rgba(255, 255, 255, 0.02); }

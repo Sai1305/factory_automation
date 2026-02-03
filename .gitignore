@@ -1,0 +1,17 @@
+# --- Dependencies (Ignore in all folders) ---
+**/node_modules/
+.pnp
+.pnp.js
+
+# --- Security (NEVER UPLOAD THESE) ---
+.env
+**/.env
+
+# --- Build Outputs ---
+**/build/
+**/dist/
+**/coverage/
+
+# --- System Files ---
+.DS_Store
+Thumbs.db
