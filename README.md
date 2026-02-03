@@ -105,4 +105,38 @@ npm install
 #code snippet
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_super_secret_key_123
+JWT_SECRET=my_super_secret_fallback_key_123
+
+ #Start the Server
+  node server.js
+# You should see: "Server running on port 5000" and "✅ MongoDB Connected"
+
+###3. Frontend Setup
+```bash
+cd flipkart-factory-dashboard
+npm install
+npm start
+
+### Project Structure
+FACTORY-AUTOMATION/
+├── backend/
+│   ├── controllers/      # Logic for API endpoints
+│   ├── models/           # Mongoose Database Schemas
+│   ├── routes/           # API Route Definitions
+│   ├── simulation/       # Physics Engine Logic
+│   └── server.js         # Entry Point
+│
+├── flipkart-factory-dashboard/
+│   ├── src/
+│   │   ├── components/   # Reusable UI Widgets
+│   │   ├── pages/        # Main Views (Login, Dashboard)
+│   │   ├── services/     # API Connection (Axios)
+│   │   └── App.js        # Main React Component
+│   └── public/
+│
+└── README.md             # about project
+
+###👨‍💻 Author
+Vullam Sri Sai Pavan
+Full Stack Developer & Simulation Architect.
+Open for Internships & Collaboration.
