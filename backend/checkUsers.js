@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // HARDCODE LINK IF .ENV FAILS
-const DB = process.env.MONGO_URI || "mongodb+srv://vullamsaipavan123_db_user:OtmCxreCOwgm0OMJ@cluster0.fegjkpc.mongodb.net/factory_automation";
+const DB = process.env.MONGO_URI
 
 const check = async () => {
     try {
