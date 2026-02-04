@@ -1,18 +1,35 @@
 const Alert = require('../models/Alert');
 
-//Get all system alerts sorted by newest
-//GET /api/alerts
+// Get all alerts
+// GET /api/alerts
 const getAlerts = async (req, res) => {
     try {
-        // Fetch last 50 alerts
-        const alerts = await Alert.find().sort({ timestamp: -1 }).limit(50);
+        // Sort by newest first (descending order)
+        const alerts = await Alert.find().sort({ createdAt: -1 });
         res.json(alerts);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching alerts' });
+        res.status(500).json({ message: error.message });
     }
 };
 
-// Acknowledge/Resolve an Alert
+// Delete an alert
+// DELETE /api/alerts/:id
+const deleteAlert = async (req, res) => {
+    try {
+        const alert = await Alert.findById(req.params.id);
+
+        if (alert) {
+            await alert.deleteOne();
+            res.json({ message: 'Alert removed' });
+        } else {
+            res.status(404).json({ message: 'Alert not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Acknowledge (Resolve) an Alert
 // PUT /api/alerts/:id/ack
 const acknowledgeAlert = async (req, res) => {
     try {
@@ -30,4 +47,8 @@ const acknowledgeAlert = async (req, res) => {
     }
 };
 
-module.exports = { getAlerts, acknowledgeAlert };
+module.exports = {
+    getAlerts,
+    deleteAlert,
+    acknowledgeAlert
+};
