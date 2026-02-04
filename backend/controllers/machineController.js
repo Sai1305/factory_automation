@@ -130,6 +130,21 @@ const controlMachine = async (req, res) => {
 
         await machine.save();
 
+        // Create Log
+        await Log.create({
+            user: req.user ? req.user.username : 'Operator',
+            action: 'Manual Control',
+            details: logMessage,
+            timestamp: new Date()
+        });
+
+        res.json({ message: 'Command executed', machine });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
 //Assign a Job to a machine
 //PUT /api/machines/:id/job
 const assignJob = async (req, res) => {
@@ -162,20 +177,6 @@ const assignJob = async (req, res) => {
         }
     } catch (error) {
         res.status(400).json({ message: error.message });
-    }
-};
-
-        // Create Log
-        await Log.create({
-            user: req.user ? req.user.username : 'Operator',
-            action: 'Manual Control',
-            details: logMessage,
-            timestamp: new Date()
-        });
-
-        res.json({ message: 'Command executed', machine });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
     }
 };
 
