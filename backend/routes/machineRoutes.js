@@ -6,7 +6,8 @@ const {
     addMachine, 
     updateMachine, 
     deleteMachine, 
-    controlMachine 
+    controlMachine,
+    assignJob
 } = require('../controllers/machineController');
 const { protect, authorize } = require('../middleware/authMiddleware');
 
@@ -21,5 +22,6 @@ router.post('/:id/control', protect, authorize('Admin', 'Engineer'), controlMach
 router.post('/', protect, authorize('Admin'), addMachine);//add new machine(/api/machines)
 router.put('/:id', protect, authorize('Admin', 'Engineer'), updateMachine);//update machine details(/api/machines/:id)
 router.delete('/:id', protect, authorize('Admin'), deleteMachine);//delete machine(/api/machines/:id)
+router.route('/:id/job').put(protect, authorize('Admin', 'Engineer'), assignJob);//assigning job to machine(/api/machines/:id/job)
 
 module.exports = router;
