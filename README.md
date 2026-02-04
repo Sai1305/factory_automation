@@ -12,8 +12,7 @@
 
 ## 📸 Screenshots
 
-![Dashboard View](https://via.placeholder.com/1000x500?text=Dashboard+Overview)
-*(Replace this link with your actual screenshot after uploading to GitHub)*
+![Dashboard View](https://1drv.ms/i/c/0b6249b8be6a3805/IQAKpChStfpIS6ZwLh2Y3UX8ASpClSM-nC4LyWD9xmrfCAw?e=s84dLa)
 
 ---
 
