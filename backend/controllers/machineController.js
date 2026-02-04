@@ -130,6 +130,41 @@ const controlMachine = async (req, res) => {
 
         await machine.save();
 
+//Assign a Job to a machine
+//PUT /api/machines/:id/job
+const assignJob = async (req, res) => {
+    const { jobName } = req.body;
+
+    try {
+        const machine = await Machine.findById(req.params.id);
+
+        if (machine) {
+            machine.currentJob = jobName;
+            
+            // Optional: Automatically start the machine when a job is assigned
+            if (jobName && machine.status === 'Idle') {
+                machine.status = 'Active';
+            }
+
+            const updatedMachine = await machine.save();
+
+            // Log the action
+            await Log.create({
+                user: req.user ? req.user.username : 'Operator',
+                action: 'Job Assignment',
+                details: `Assigned job: "${jobName}" to ${machine.name}`,
+                timestamp: new Date()
+            });
+
+            res.json(updatedMachine);
+        } else {
+            res.status(404).json({ message: 'Machine not found' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
         // Create Log
         await Log.create({
             user: req.user ? req.user.username : 'Operator',
@@ -150,5 +185,6 @@ module.exports = {
     addMachine,
     updateMachine,
     deleteMachine,
-    controlMachine
+    controlMachine,
+    assignJob
 };
