@@ -10,12 +10,6 @@
 
 ---
 
-## 📸 Screenshots
-
-![Dashboard View](https://1drv.ms/i/c/0b6249b8be6a3805/IQAKpChStfpIS6ZwLh2Y3UX8ASpClSM-nC4LyWD9xmrfCAw?e=s84dLa)
-
----
-
 ## 🚀 Key Features
 
 ### 🔌 Intelligent Simulation Engine
