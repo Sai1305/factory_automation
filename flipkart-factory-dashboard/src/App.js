@@ -4,7 +4,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Machines from './pages/Machines';
-import Logs from './pages/Logs';
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -19,9 +18,8 @@ function App() {
         <Route path="/register" element={<Register />} /> {/*New Route */}
         
         <Route path="/dashboard" element={ <PrivateRoute><Dashboard /></PrivateRoute>}/>
-        <Route path="/machines" element={ <Machines />}/>
-        <Route path="/logs" element={<Logs />} />
-      </Routes>
+        <Route path="/machines" element={ <PrivateRoute><Machines /></PrivateRoute>}/>
+        </Routes>
     </Router>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../components/Sidebar';
 import MachineCard from '../components/MachineCard';
 import MachineControlModal from '../components/MachineControlModal';
 import { getMachines, sendCommand } from '../services/api';
@@ -48,22 +47,6 @@ const Machines = () => {
 
     return (
         <div style={{ display: 'flex', backgroundColor: '#f1f5f9', minHeight: '100vh' }}>
-            <Sidebar />
-            
-            <div style={{ marginLeft: '240px', padding: '30px', width: '100%' }}>
-                <h1 style={{ color: '#1e293b', marginBottom: '20px' }}>🏭 Machine Management</h1>
-                
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-                    {machines.map(machine => (
-                        <MachineCard 
-                            key={machine._id} 
-                            machine={machine} 
-                            // We pass the function to open the modal.
-                            onClick={(m) => setSelectedMachine(m)} 
-                        />
-                    ))}
-                </div>
-            </div>
 
             {/* RENDER THE MODAL HERE */}
             {selectedMachine && (
