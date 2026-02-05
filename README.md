@@ -10,13 +10,6 @@
 
 ---
 
-## 📸 Screenshots
-
-![Dashboard View](https://via.placeholder.com/1000x500?text=Dashboard+Overview)
-*(Replace this link with your actual screenshot after uploading to GitHub)*
-
----
-
 ## 🚀 Key Features
 
 ### 🔌 Intelligent Simulation Engine
