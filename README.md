@@ -10,6 +10,25 @@
 
 ---
 
+## Screenshots
+
+> Screenshots of a dashboard of the factory_automation
+> ![screenshots].[(https://drive.google.com/drive/folders/1WA6L69vqG4ykdPlcvKo81Ghj-198Ae4o?usp=sharing)].
+
+---
+
+## Demo Video Link
+
+> video containing a output of a dashboard and postman collection API
+> ![video link].[(https://drive.google.com/file/d/1jHr7-2aXrPf7DXrqufrHSYby4ETQJSXI/view?usp=drive_link)].
+
+---
+
+##Postmaon_collection API
+
+> It is a collection of API endpoints in postman API
+> ![API collection].[(https://drive.google.com/file/d/1mVZNzfrHZiPJdtBKpBhr9C--xD-L1fLa/view?usp=sharing)]
+
 ## 🚀 Key Features
 
 ### 🔌 Intelligent Simulation Engine
