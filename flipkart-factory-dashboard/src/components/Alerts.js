@@ -9,11 +9,13 @@ const Alerts = () => {
         const fetchAlerts = async () => {
             try {
                 const data = await getAlerts();
-                setAlerts(data);
+                const sortedData = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                setAlerts(sortedData);
             } catch (error) {
                 console.error("Error fetching alerts", error);
             }
         };
+
         fetchAlerts();
         const interval = setInterval(fetchAlerts, 2000);
         return () => clearInterval(interval);
@@ -27,13 +29,15 @@ const Alerts = () => {
                         <th>Severity</th>
                         <th>Machine</th>
                         <th>Issue</th>
-                        <th>Time</th>
+                        <th>Time (IST)</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {alerts.length === 0 ? (
-                        <tr><td colSpan="5" style={{ textAlign: 'center', padding: '30px', color: 'var(--text-secondary)' }}>No active alerts. Systems normal.</td></tr>
+                        <tr>
+                            <td colSpan="5" style={{ textAlign: 'center', padding: '30px' }}>No active alerts.</td>
+                        </tr>
                     ) : (
                         alerts.map((alert) => (
                             <tr key={alert._id}>
@@ -46,14 +50,20 @@ const Alerts = () => {
                                 </td>
                                 <td style={{ fontWeight: 'bold' }}>{alert.machineName || 'Unknown Machine'}</td>
                                 <td>{alert.message}</td>
-                                <td style={{ fontFamily: 'monospace', color: 'var(--text-secondary)' }}>
-                                    {new Date(alert.timestamp).toLocaleTimeString()}
+                                <td style={{ fontFamily: 'monospace', color: 'gray' }}>
+                                    {new Date(alert.timestamp).toLocaleString('en-IN', { 
+                                        timeZone: 'Asia/Kolkata', 
+                                        hour12: true, 
+                                        hour: '2-digit', 
+                                        minute: '2-digit', 
+                                        second: '2-digit'
+                                    })}
                                 </td>
                                 <td>
-                                    {alert.status === 'New' ? (
-                                        <span style={{ color: 'var(--danger)', fontWeight: 'bold' }}>Active</span>
+                                    {(alert.status === 'New' || alert.status === 'Open') ? (
+                                        <span style={{ color: 'red', fontWeight: 'bold' }}>Active</span>
                                     ) : (
-                                        <span style={{ color: 'var(--success)' }}><CheckCircle size={16}/> Resolved</span>
+                                        <span style={{ color: 'green' }}><CheckCircle size={16}/> Resolved</span>
                                     )}
                                 </td>
                             </tr>

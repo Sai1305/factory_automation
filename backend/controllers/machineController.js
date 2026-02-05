@@ -1,5 +1,6 @@
 const Machine = require('../models/Machine');
 const Log = require('../models/Log');
+const Alert = require('../models/Alert');
 
 //Get all machines
 //GET /api/machines
@@ -86,6 +87,7 @@ const updateMachine = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
 
 //Delete machine
 //DELETE /api/machines/:id

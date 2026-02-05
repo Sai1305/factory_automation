@@ -12,19 +12,21 @@ const FactoryOverview = () => {
     useEffect(() => {
         const generateData = () => {
             const now = new Date();
-            const time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-            return {
-                time,
-                temperature: 65 + (Math.random() * 10 - 5), // Avg Temp
-                efficiency: 85 + (Math.random() * 10 - 5),  // Avg Efficiency
-                production: Math.floor(Math.random() * 50) + 1000, // Units/hr
-                vibration: Math.random() * 20 + 10, // Hz
-            };
+          const initial = Array(15).fill(0).map((_, i) => {
+    const past = new Date(Date.now() - (15 - i) * 2000); // Go back in time
+    const time = `${past.getHours()}:${past.getMinutes()}:${past.getSeconds()}`;
+    return {
+        time,
+        temperature: 65 + (Math.random() * 10 - 5),
+        efficiency: 85 + (Math.random() * 10 - 5),
+        production: Math.floor(Math.random() * 50) + 1000,
+        vibration: Math.random() * 20 + 10,
+    };
+});
+setData(initial);
         };
 
-        // Initial Data
-        const initial = Array(15).fill(0).map(generateData);
-        setData(initial);
+        generateData();
 
         // Live Update Loop
         const interval = setInterval(() => {
@@ -72,7 +74,7 @@ const FactoryOverview = () => {
                 <div style={styles.chartCard}>
                     <h3 style={styles.chartTitle}>Temperature vs Efficiency Trend</h3>
                     <div style={{ width: '100%', height: 300 }}>
-                        <ResponsiveContainer>
+                        <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={data}>
                                 <defs>
                                     <linearGradient id="colorTemp" x1="0" y1="0" x2="0" y2="1">
@@ -81,7 +83,8 @@ const FactoryOverview = () => {
                                     </linearGradient>
                                     <linearGradient id="colorEff" x1="0" y1="0" x2="0" y2="1">
                                         <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                                        <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                        // Initial Data
+                       <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
                                     </linearGradient>
                                 </defs>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -101,7 +104,7 @@ const FactoryOverview = () => {
                 <div style={styles.chartCard}>
                     <h3 style={styles.chartTitle}>Production Rate & Vibration Analysis</h3>
                     <div style={{ width: '100%', height: 300 }}>
-                        <ResponsiveContainer>
+                        <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={data}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                                 <XAxis dataKey="time" hide />
